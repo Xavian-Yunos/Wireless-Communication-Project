@@ -1,0 +1,37 @@
+menu "Bubbles Detector Configuration"
+
+    config EXAMPLE_BOARD_BUTTON_GPIO
+        int "Reset button GPIO pin"
+        default 9
+        help
+            GPIO pin for the reset button.
+
+    config EXAMPLE_TARGET_NAME
+        string "Target BLE device name"
+        default "Bubbles"
+        help
+            The advertised name of the BLE device to detect (e.g., a cat collar).
+
+    config EXAMPLE_RSSI_ON_THRESHOLD
+        int "RSSI threshold to enter restricted area (dBm)"
+        range -100 -40
+        default -70
+        help
+            If target RSSI is at or above this threshold, "Bubbles" is
+            considered to have entered the restricted area.
+
+    config EXAMPLE_RSSI_OFF_THRESHOLD
+        int "RSSI threshold to leave restricted area (dBm)"
+        range -110 -50
+        default -80
+        help
+            If target RSSI drops to or below this threshold,
+            "Bubbles" is considered to have left the restricted area.
+
+    config EXAMPLE_KEEP_BT_AFTER_PROV
+        bool "Keep BT controller memory after BLE provisioning"
+        default y
+        help
+            Required for BLE presence detection after WiFi provisioning.
+
+endmenu
